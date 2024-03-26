@@ -1,5 +1,13 @@
 # Ollama Dockerfile for Jetson
 
+This Dockerfile was designed to be used with L4T 35.4.1 (Jetpack 5). If you want to use it on the new Jetpack 6, 
+make sure you pass the build argument.
+
+* --build-arg L4T_VERSION=<version> where <version> corresponds to a valid l4t base container hosted by [dusty-nv](https://github.com/dusty-nv/jetson-containers).
+Ensure you find a container version matching the version of L4T you are running, Jetpack 6 = r36.x.x
+
+`docker build -t l4t_ollama_new:0.1.0 --build-arg L4T_VERSION=r36.2.0 .`
+
 ## Usage
 
 1. Clone the repository
@@ -32,3 +40,4 @@ Note: this assumes you have Ollama installed outside of Docker.
 * ollama run <desired_model> e.g. 
 
 ```ollama run mistral```
+
