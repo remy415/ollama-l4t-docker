@@ -1,14 +1,34 @@
-# Ollama Tegra Fix
-## Jetson support should be included as of Ollama 0.1.30. Please see the official repo for more information https://github.com/ollama/ollama
+# Ollama Dockerfile for Jetson
 
-### ENSURE THESE TWO VARIABLES ARE SET:
-`export LD_LIBRARY_PATH="/usr/local/cuda/lib64:/usr/local/cuda/compat:/usr/local/cuda/include"`
-`export OLLAMA_SKIP_CPU_GENERATE="1"`
+## Usage
 
-## Also, Tegra devices will fail `go generate ./...` unless architectures are set:
-### L4T_VERSION.major >= 36:    # JetPack 6
-`export CMAKE_CUDA_ARCHITECTURES="87"`
-### L4T_VERSION.major >= 34:  # JetPack 5
-`export CMAKE_CUDA_ARCHITECTURES="72;87"`
-### L4T_VERSION.major == 32:  # JetPack 4
-`export CMAKE_CUDA_ARCHITECTURES="53;62;72"`
+1. Clone the repository
+   
+```
+git clone https://github.com/remy415/ollama-l4t-docker.git
+cd ollama-l4t-docker/docker
+```
+
+2. Build the Docker image
+
+* docker build -t <your_image_name:tag> . e.g.
+
+```
+docker build -t l4t_ollama_new:0.1.0 .
+```
+
+3. Run the Docker image
+
+* docker run -d --gpus=all -v ollama:/root/.ollama -p 11434:11434 --name <your_container_name> <your_image_name:tag> e.g.
+
+```
+docker run -d --gpus=all -v ollama:/root/.ollama -p 11434:11434 --name ollama l4t_ollama_new:0.1.0
+```
+
+4. Connect to the API
+
+Note: this assumes you have Ollama installed outside of Docker.
+
+* ollama run <desired_model> e.g. 
+
+```ollama run mistral```
