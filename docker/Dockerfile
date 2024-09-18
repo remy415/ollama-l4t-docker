@@ -15,7 +15,7 @@ WORKDIR /go/src/github.com/jmorganca/
 COPY ./scripts/tegra_linux_deps.sh /opt/
 RUN apt-get update && apt-get install -y ca-certificates && CMAKE_VERSION=${CMAKE_VERSION} GOLANG_VERSION=${GOLANG_VERSION} sh /opt/tegra_linux_deps.sh
 ENV PATH /usr/local/bin:/usr/bin:/usr/local/cuda/bin:${PATH}
-ENV LD_LIBRARY_PATH=/usr/local/cuda/lib:/usr/local/cuda/lib64/:/usr/local/cuda/include
+ENV LD_LIBRARY_PATH=/usr/local/cuda/lib:/usr/local/cuda/lib64/:/usr/local/cuda/include:/usr/lib/aarch64-linux-gnu
 ENV OLLAMA_SKIP_CPU_GENERATE="1"
 ENV CGO_ENABLED="1"
 ENV CMAKE_CUDA_ARCHITECTURES="87"
@@ -35,7 +35,7 @@ COPY --from=ollama-cuda-l4t-base /go/src/github.com/jmorganca/ollama/ollama /bin
 EXPOSE 11434
 ENV OLLAMA_HOST 0.0.0.0
 ENV PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-ENV LD_LIBRARY_PATH=/usr/local/cuda/lib:/usr/local/cuda/lib64:/usr/local/cuda/include
+ENV LD_LIBRARY_PATH=/usr/local/cuda/lib:/usr/local/cuda/lib64:/usr/local/cuda/include:/usr/lib/aarch64-linux-gnu/libcuda.so
 ENV NVIDIA_DRIVER_CAPABILITIES=compute,utility
 ENV JETSON_JETPACK=${JETSON_JETPACK}
 
