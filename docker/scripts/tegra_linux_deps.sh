@@ -2,9 +2,19 @@
 
 # Script for common Dockerfile dependency installation in Tegra L4T based images
 CURL_OPTIONS="-s -L"
-if [ -n "JETSON_DBUILD_PROXY" ]; then
-    CURL_OPTIONS="${CURL_OPTIONS} -x ${JETSON_DBUILD_PROXY}"
+PROXY=""
+if [ -n "HTTP_PROXY" ]; then
+    PROXY=HTTP_PROXY
 fi
+
+if [ -n "HTTPS_PROXY" ]; then
+    PROXY=HTTPS_PROXY
+fi
+
+if [ -n "PROXY" ]; then
+    CURL_OPTIONS="${CURL_OPTIONS} -x ${PROXY}"
+fi
+
 set -ex
 MACHINE=$(uname -m)
 
