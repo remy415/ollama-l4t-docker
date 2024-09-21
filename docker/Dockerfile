@@ -30,7 +30,6 @@ RUN go build .
 # Runtime stages
 FROM dustynv/llama_cpp:${L4T_VERSION} as runtime-arm64
 ARG JETSON_JETPACK
-ARG JETSON_DBUILD_PROXY
 COPY ./scripts/tegra_linux_deps.sh /opt/
 RUN apt-get update && apt-get install -y ca-certificates && CMAKE_VERSION=${CMAKE_VERSION} GOLANG_VERSION=${GOLANG_VERSION} sh /opt/tegra_linux_deps.sh
 COPY --from=ollama-cuda-l4t-base /go/src/github.com/jmorganca/ollama/ollama /bin/ollama
