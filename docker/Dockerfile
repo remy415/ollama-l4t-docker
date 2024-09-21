@@ -4,6 +4,7 @@ ARG L4T_VERSION=r36.2.0
 ARG OLLAMA_REPOSITORY="ollama"
 ARG OLLAMA_BRANCH="main"
 ARG JETSON_JETPACK="6.0.0"
+ARG JETSON_DBUILD_PROXY=""
 
 # Copy the minimal context we need to run the generate scripts
 FROM dustynv/llama_cpp:${L4T_VERSION} AS ollama-cuda-l4t-base
