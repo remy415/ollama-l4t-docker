@@ -1,4 +1,5 @@
-# Ollama Dockerfile for Jetson
+# (DEPRECATED) Ollama Dockerfile for Jetson
+Note: This repo is deprecated. Please visit [here](https://github.com/dusty-nv/jetson-containers/tree/master/packages/llm/ollama) for an updated container build process for Jetson containers. This repository does not work with latest r36.3.0 Jetson release.
 
 This Dockerfile was designed to be used with L4T 35.4.1 (Jetpack 5). If you want to use it on the new Jetpack 6, 
 make sure you pass the build argument.
